@@ -105,7 +105,7 @@ jobs:
         run: |
           export TARGET_COMPILE=placeholder
           cd kernel
-          make hdr
+          make headers_install
           cd ..
           zip -r kpuser.zip user
 
@@ -147,11 +147,11 @@ jobs:
           ndk-version: r26b
           add-to-path: true
 
-      - name: Make hdr
+      - name: make headers_install
         run: |
           export TARGET_COMPILE=placeholder
           cd kernel
-          make hdr
+          make headers_install
 
       - name: Build kptools-android
         run: |
@@ -194,11 +194,11 @@ jobs:
           echo "Generated Version: $VERSION"
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Make hdr
+      - name: make headers_install
         run: |
           export TARGET_COMPILE=placeholder
           cd kernel
-          make hdr
+          make headers_install
 
       - name: Build kptools
         run: |
@@ -297,11 +297,11 @@ jobs:
           echo "Generated Version: $VERSION"
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Make hdr
+      - name: make headers_install
         run: |
           export TARGET_COMPILE=placeholder
           cd kernel
-          make hdr
+          make headers_install
 
       - name: Build kptools
         run: |
