@@ -48,7 +48,7 @@ static int local_strcmp(const char *s1, const char *s2)
 
 /* ---------------- symbol lookup ---------------- */
 
-unsigned long (*sukisu_compact_find_symbol)(const char *name) = NULL;
+unsigned long (*nextgensu_compact_find_symbol)(const char *name) = NULL;
 
 unsigned long symbol_lookup_name(const char *name)
 {
@@ -67,8 +67,8 @@ unsigned long symbol_lookup_name(const char *name)
     }
 
     /* optional fallback */
-    if (sukisu_compact_find_symbol)
-        return sukisu_compact_find_symbol(name);
+    if (nextgensu_compact_find_symbol)
+        return nextgensu_compact_find_symbol(name);
 
     return 0;
 }
@@ -100,5 +100,5 @@ void symbol_init(void)
      * kallsyms_lookup_name does NOT exist.
      * Do NOT attempt to resolve it.
      */
-    sukisu_compact_find_symbol = NULL;
+    nextgensu_compact_find_symbol = NULL;
 }

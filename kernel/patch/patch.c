@@ -58,7 +58,7 @@ int android_sepolicy_flags_fix();
 #endif
 
 void init_patchsu();
-void init_sukisu_ultra();
+void init_nextgen_su();
 
 static void before_rest_init(hook_fargs4_t *args, void *udata)
 {
@@ -89,7 +89,7 @@ static void before_rest_init(hook_fargs4_t *args, void *udata)
     // log_boot("su_compat_init done: %d\n", rc);
 
     // 自己的逻辑
-    init_sukisu_ultra();
+    init_nextgen_su();
 
     rc = resolve_pt_regs();
     log_boot("resolve_pt_regs done: %d\n", rc);
