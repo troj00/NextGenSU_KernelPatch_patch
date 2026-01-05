@@ -147,7 +147,7 @@ void before_nextgensu_kpm_control(hook_fargs3_t* args, void* udata) {
     args->skip_origin = 1;
 }
 
-void init_nextgensu_ultra() {
+void init_nextgen_su() {
     unsigned long addr;
     int rc;
 
