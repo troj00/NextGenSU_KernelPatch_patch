@@ -3,7 +3,7 @@ name: Сборка
 on:
   push:
     branches:
-      - main
+      - nextgen
   workflow_dispatch:
 
 jobs:
