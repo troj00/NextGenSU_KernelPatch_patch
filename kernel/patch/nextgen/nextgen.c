@@ -80,7 +80,7 @@ static long call_kpm_list(char * buf, int len)
 
 // =====================================================================================
 
-void before_nextgensu_load_module_path(hook_fargs4_t* args, void* udata) {
+void before_nextgen_load_module_path(hook_fargs4_t* args, void* udata) {
     const char* path = (const char*) args->arg0;
     const char* arg = (const char*) args->arg1;
     void* ptr = (void*) args->arg2;
@@ -92,7 +92,7 @@ void before_nextgensu_load_module_path(hook_fargs4_t* args, void* udata) {
     args->skip_origin = 1;
 }
 
-void before_nextgensu_unload_module(hook_fargs3_t* args,void* udata) {
+void before_nextgen_unload_module(hook_fargs3_t* args,void* udata) {
     const char* name = (const char*)args->arg0;
     void* ptr = (void*) args->arg1;
     int* result = (void*) args->arg2;
@@ -100,14 +100,14 @@ void before_nextgensu_unload_module(hook_fargs3_t* args,void* udata) {
     args->skip_origin = 1;
 }
 
-void before_nextgensu_kpm_num(hook_fargs1_t* args, void* udata) {
+void before_nextgen_kpm_num(hook_fargs1_t* args, void* udata) {
     int* result = (void*) args->arg0;
 
     *result = (int) get_module_nums();
     args->skip_origin = 1;
 }
 
-void before_nextgensu_kpm_list(hook_fargs3_t* args, void* udata) {
+void before_nextgen_kpm_list(hook_fargs3_t* args, void* udata) {
     char* out = (char* __user) args->arg0;
     int len = (int) args->arg1;
     int * result = (void*) args->arg2;
@@ -118,7 +118,7 @@ void before_nextgensu_kpm_list(hook_fargs3_t* args, void* udata) {
     args->skip_origin = 1;
 }
 
-void before_nextgensu_kpm_info(hook_fargs3_t* args, void* udata) {
+void before_nextgen_kpm_info(hook_fargs3_t* args, void* udata) {
     char* name = (char*) args->arg0;
     char* buf = (char*) args->arg1;
     int buf_size = (int) args->arg2;
@@ -127,7 +127,7 @@ void before_nextgensu_kpm_info(hook_fargs3_t* args, void* udata) {
     args->skip_origin = 1;
 }
 
-void before_nextgensu_kpm_version(hook_fargs3_t* args, void* udata) {
+void before_nextgen_kpm_version(hook_fargs3_t* args, void* udata) {
     char * buf = (char *) args->arg0;
     int buf_size =  (int) args->arg1;
     const char *buildtime = get_build_time();
@@ -136,7 +136,7 @@ void before_nextgensu_kpm_version(hook_fargs3_t* args, void* udata) {
     args->skip_origin = 1;
 }
 
-void before_nextgensu_kpm_control(hook_fargs3_t* args, void* udata) {
+void before_nextgen_kpm_control(hook_fargs3_t* args, void* udata) {
     const char * name = (const char *) args->arg0;
     const char * arg = (const char *) args->arg1;
     long arg_len = (long) args->arg2;
@@ -151,60 +151,60 @@ void init_nextgen_su() {
     unsigned long addr;
     int rc;
 
-    addr = kallsyms_lookup_name("nextgensu_kpm_load_module_path");
+    addr = kallsyms_lookup_name("nextgen_kpm_load_module_path");
     if(addr) {
-        rc = hook_wrap4((void*) addr, before_nextgensu_load_module_path, NULL, NULL);
-        log_boot("hook nextgensu_load_module_path rc:%d \n", rc);
+        rc = hook_wrap4((void*) addr, before_nextgen_load_module_path, NULL, NULL);
+        log_boot("hook nextgen_load_module_path rc:%d \n", rc);
     } else {
-        log_boot("hook nextgensu_load_module_path faild \n", rc);
+        log_boot("hook nextgen_load_module_path faild \n", rc);
     }
 
-    addr = kallsyms_lookup_name("nextgensu_kpm_unload_module");
+    addr = kallsyms_lookup_name("nextgen_kpm_unload_module");
     if(addr) {
-        rc = hook_wrap3((void*) addr, before_nextgensu_unload_module, NULL, NULL);
-        log_boot("hook nextgensu_kpm_unload_module rc:%d \n", rc);
+        rc = hook_wrap3((void*) addr, before_nextgen_unload_module, NULL, NULL);
+        log_boot("hook nextgen_kpm_unload_module rc:%d \n", rc);
     } else {
-        log_boot("hook nextgensu_kpm_unload_module faild \n", rc);
+        log_boot("hook nextgen_kpm_unload_module faild \n", rc);
     }
 
-    addr = kallsyms_lookup_name("nextgensu_kpm_num");
+    addr = kallsyms_lookup_name("nextgen_kpm_num");
     if(addr) {
-        rc = hook_wrap1((void*) addr, before_nextgensu_kpm_num, NULL, NULL);
-        log_boot("hook nextgensu_kpm_num rc:%d \n", rc);
+        rc = hook_wrap1((void*) addr, before_nextgen_kpm_num, NULL, NULL);
+        log_boot("hook nextgen_kpm_num rc:%d \n", rc);
     } else {
-        log_boot("hook nextgensu_kpm_num faild \n", rc);
+        log_boot("hook nextgen_kpm_num faild \n", rc);
     }
 
-    addr = kallsyms_lookup_name("nextgensu_kpm_list");
+    addr = kallsyms_lookup_name("nextgen_kpm_list");
     if(addr) {
-        rc = hook_wrap3((void*) addr, before_nextgensu_kpm_list, NULL, NULL);
-        log_boot("hook nextgensu_kpm_list rc:%d \n", rc);
+        rc = hook_wrap3((void*) addr, before_nextgen_kpm_list, NULL, NULL);
+        log_boot("hook nextgen_kpm_list rc:%d \n", rc);
     } else {
-        log_boot("hook nextgensu_kpm_list faild \n", rc);
+        log_boot("hook nextgen_kpm_list faild \n", rc);
     }
 
-    addr = kallsyms_lookup_name("nextgensu_kpm_info");
+    addr = kallsyms_lookup_name("nextgen_kpm_info");
     if(addr) {
-        rc = hook_wrap3((void*) addr, before_nextgensu_kpm_info, NULL, NULL);
-        log_boot("hook nextgensu_kpm_info rc:%d \n", rc);
+        rc = hook_wrap3((void*) addr, before_nextgen_kpm_info, NULL, NULL);
+        log_boot("hook nextgen_kpm_info rc:%d \n", rc);
     } else {
-        log_boot("hook nextgensu_kpm_info faild \n", rc);
+        log_boot("hook nextgen_kpm_info faild \n", rc);
     }
 
-    addr = kallsyms_lookup_name("nextgensu_kpm_control");
+    addr = kallsyms_lookup_name("nextgen_kpm_control");
     if(addr) {
-        rc = hook_wrap3((void*) addr, before_nextgensu_kpm_control, NULL, NULL);
-        log_boot("hook nextgensu_kpm_control rc:%d \n", rc);
+        rc = hook_wrap3((void*) addr, before_nextgen_kpm_control, NULL, NULL);
+        log_boot("hook nextgen_kpm_control rc:%d \n", rc);
     } else {
-        log_boot("hook nextgensu_kpm_control faild \n", rc);
+        log_boot("hook nextgen_kpm_control faild \n", rc);
     }
 
-    addr = kallsyms_lookup_name("nextgensu_kpm_version");
+    addr = kallsyms_lookup_name("nextgen_kpm_version");
     if(addr) {
-        rc = hook_wrap3((void*) addr, before_nextgensu_kpm_version, NULL, NULL);
-        log_boot("hook nextgensu_kpm_version rc:%d \n", rc);
+        rc = hook_wrap3((void*) addr, before_nextgen_kpm_version, NULL, NULL);
+        log_boot("hook nextgen_kpm_version rc:%d \n", rc);
     } else {
-        log_boot("hook nextgensu_kpm_version faild \n", rc);
+        log_boot("hook nextgen_kpm_version faild \n", rc);
     }
 
 }
